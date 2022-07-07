@@ -1,33 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
-import Amplify from 'aws-amplify';
-import aws_exports from './aws-exports';
-Amplify.configure(aws_exports);
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Amplify, { Auth } from 'aws-amplify';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import awsconfig from './aws-exports';
+import Embed from './Embed';
+import { makeStyles } from '@material-ui/core/styles';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <AmplifySignOut />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+Amplify.configure(awsconfig);
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    paddingTop: theme.spacing(2)
+  },
+}));
+
+function App() {
+
+  const classes = useStyles();
+
+  return (
+    <div>
+      <AmplifySignOut />
+      <Container maxWidth="md">
+        <Typography variant="h4" component="h1" align="center" color="textPrimary" className={classes.title} gutterBottom>
+          Amazon QuickSight Embed
+        </Typography>
+        <Embed />
+      </Container>
+    </div>
+  );
 }
 
 export default withAuthenticator(App);
