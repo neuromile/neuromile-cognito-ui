@@ -23,7 +23,7 @@ function App() {
       <AmplifySignOut />
       <Container maxWidth="md">
         <Typography variant="h4" component="h1" align="center" color="textPrimary" className={classes.title} gutterBottom>
-          Amazon QuickSight Embed
+          Amazon QuickSight Embed code
         </Typography>
         <Embed />
       </Container>
